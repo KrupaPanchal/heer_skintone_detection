@@ -14,8 +14,10 @@ export const analyzeSkin = async (req, res) => {
     });
 
     console.log("Analyzing skin via Python service...");
+    const pythonServiceUrl = process.env.PYTHON_SERVICE_URL || "http://127.0.0.1:5001/analyze";
+
     const response = await axios.post(
-      "http://127.0.0.1:5001/analyze",
+      pythonServiceUrl,
       formData,
       { headers: formData.getHeaders() }
     );
